@@ -18,8 +18,8 @@ class Auth extends BaseController
     // Registration
     public function register()
     {
-        // Redirect if already logged in
-        if ($this->session->get('isLoggedIn') === true) {
+        // Only redirect on GET requests if already logged in
+        if ($this->request->getMethod() === 'get' && $this->session->get('isLoggedIn') === true) {
             return redirect()->to(base_url('dashboard'));
         }
 
@@ -84,28 +84,24 @@ class Auth extends BaseController
             }
         }
 
-        return view('auth/register');
+        return view('auth/register', ['title' => 'Register']);
     }
 
     // Login
     public function login()
     {
-        // Redirect if already logged in
-        if ($this->session->get('isLoggedIn') === true) {
-            return redirect()->to(base_url('dashboard'));
-        }
-
+        // If this is a POST request, process the login
         if ($this->request->getMethod() === 'POST') {
-
             $login = $this->request->getPost('login');
             $password = $this->request->getPost('password');
 
+            // Basic validation
             if (empty($login) || empty($password)) {
                 $this->session->setFlashdata('error', 'Please enter both login and password.');
-                return view('auth/login');
+                return redirect()->to(base_url('login'))->withInput();
             }
 
-            // Hardcoded admin login
+            // Hardcoded admin login (for testing only - remove in production)
             if ($login === 'admin' && $password === 'admin123') {
                 $this->session->set([
                     'userID'     => 1,
@@ -115,44 +111,42 @@ class Auth extends BaseController
                     'isLoggedIn' => true
                 ]);
                 $this->session->setFlashdata('success', 'Welcome back, Administrator!');
-                return redirect()->to(base_url('dashboard'));
+                return redirect()->to(base_url('admin/dashboard'));
             }
 
             // Check DB for user
             $builder = $this->db->table('users');
             $user = $builder->where('email', $login)
-                            ->orWhere('name', $login)
-                            ->get()
-                            ->getRowArray();
+                          ->orWhere('name', $login)
+                          ->get()
+                          ->getRowArray();
 
             if ($user && password_verify($password, $user['password'])) {
-
-                $this->session->set([
+                $userData = [
                     'userID'     => $user['id'],
                     'name'       => $user['name'],
                     'email'      => $user['email'],
                     'role'       => $user['role'],
                     'isLoggedIn' => true
-                ]);
-
-                // Role-based redirect
-                switch ($user['role']) {
-                    case 'admin':
-                        return redirect()->to(base_url('admin/dashboard'));
-                    case 'teacher':
-                        return redirect()->to(base_url('teacher/dashboard'));
-                    case 'student':
-                        return redirect()->to(base_url('student/dashboard'));
-                    default:
-                        return redirect()->to(base_url('dashboard'));
-                }
-
+                ];
+                
+                // Set session data
+                $this->session->set($userData);
+                
+                // Log the session data for debugging
+                log_message('debug', 'User logged in: ' . print_r($userData, true));
+                
+                $redirectUrl = $this->getDashboardUrl($user['role']);
+                log_message('debug', 'Redirecting to: ' . $redirectUrl);
+                
+                return redirect()->to($redirectUrl);
             } else {
                 $this->session->setFlashdata('error', 'Invalid login credentials.');
+                return redirect()->to(base_url('login'))->withInput();
             }
         }
 
-        return view('auth/login');
+        return view('auth/login', ['title' => 'Login']);
     }
 
     // Logout
@@ -182,4 +176,29 @@ class Auth extends BaseController
             'title' => 'LMS - Dashboard'
         ]);
     }
+
+
+ // app/Controllers/Auth.php
+protected function getDashboardUrl($role)
+{
+    if (empty($role)) {
+        log_message('error', 'No role provided for dashboard redirection');
+        return base_url('login');
+    }
+    
+    $role = strtolower(trim($role));
+    log_message('debug', "Getting dashboard URL for role: $role");
+    
+    switch ($role) {
+        case 'admin':
+            return base_url('admin/dashboard');
+        case 'teacher':
+            return base_url('teacher/dashboard');
+        case 'student':
+            return base_url('student/dashboard');
+        default:
+            log_message('error', "Unknown role for dashboard: $role");
+            return base_url('login');
+    }
+}
 }

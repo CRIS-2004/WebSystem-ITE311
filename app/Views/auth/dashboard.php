@@ -1,165 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?= $title ?? 'Dashboard - WebSystem' ?></title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<?= $this->extend('templates/dashboard_template') ?>
 
-  <style>
-    body {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      color: #fff;
-    }
-
-    .navbar {
-      background: rgba(0, 0, 0, 0.6) !important;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .navbar-brand {
-      color: #00d4ff !important;
-      font-weight: bold;
-      text-shadow: 0 0 6px rgba(0, 212, 255, 0.8);
-    }
-
-    .navbar-text {
-      font-weight: 500;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 16px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease;
-      color: #fff;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-    }
-
-    .card-title {
-      color: #00d4ff;
-      font-weight: bold;
-      text-shadow: 0 0 6px rgba(0, 212, 255, 0.6);
-    }
-
-    .card.bg-primary {
-      background: linear-gradient(90deg, #00c6ff, #0072ff) !important;
-      border: none;
-      border-radius: 16px;
-      box-shadow: 0 0 16px rgba(0, 212, 255, 0.7);
-    }
-
-    .btn-danger {
-      border-radius: 12px;
-      font-weight: bold;
-      box-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
-      transition: all 0.3s ease;
-    }
-
-    .btn-danger:hover {
-      background-color: #ff4d4d;
-      transform: scale(1.05);
-      box-shadow: 0 0 18px rgba(255, 77, 77, 0.9);
-    }
-
-    .alert {
-      border-radius: 12px;
-    }
-  </style>
-</head>
-
-<body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-      <a class="navbar-brand" href="<?= base_url('dashboard') ?>">WebSystem- Parcon Enterprises</a>
-      <div class="navbar-nav ms-auto">
-        <!-- Display logged-in user's name -->
-        <span class="navbar-text text-white me-3">
-          <?= ucfirst($user['role']) ?>-
-          <?= esc(ucfirst($user['name'])) ?> 
-        </span>
-
-        <a href="<?= base_url('logout') ?>" class="btn btn-danger"('Logout?')">Logout</a>
-      </div>
+<?= $this->section('content') ?>
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
     </div>
-  </nav>
 
-  <!-- Main Content -->
-  <div class="container mt-4">
-    <?php if (session()->getFlashdata('success')): ?>
-      <div class="alert alert-success">
-        <?= session()->getFlashdata('success') ?>
-      </div>
-    <?php endif; ?>
-
-    <?php if (session()->getFlashdata('error')): ?>
-      <div class="alert alert-danger">
-        <?= session()->getFlashdata('error') ?>
-      </div>
-    <?php endif; ?>
-
-    <!-- Welcome -->
-    <div class="row mb-4">
-      <div class="col-12">
-        <div class="card bg-primary text-white">
-          <div class="card-body text-left">
-            <h2>Welcome, <?= ucfirst($user['role']).' '.esc(ucfirst($user['name'])) ?>!</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-<!-- Role-Based Section -->
-<?php $role = $user['role']; ?>
-
-<?php if($role === 'admin'): ?>
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <div class="card bg-warning text-dark">
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Welcome Card -->
+        <div class="col-12 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                    <h5>Admin Panel</h5>
-                    <p>Manage Users and Settings</p>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Welcome, <?= esc($user['name']) ?>!</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <?= ucfirst(esc($user['role'])) ?> Dashboard
+                            </div>
+                            <div class="mt-2">
+                                <p class="mb-1"><strong>Email:</strong> <?= esc($user['email']) ?></p>
+                                <p class="mb-0"><strong>Role:</strong> <?= ucfirst(esc($user['role'])) ?></p>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user-circle fa-3x text-gray-300"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-  <?php elseif($role === 'teacher'): ?>
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <div class="card bg-warning text-dark">
-                <div class="card-body">
-                    <h5>Teacher Panel</h5>
-                    <p></p>
+
+        <!-- Role-specific content -->
+        <?php if ($user['role'] === 'admin'): ?>
+            <!-- Admin Dashboard Content -->
+            <div class="col-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Admin Controls</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <a href="<?= base_url('admin/users') ?>" class="btn btn-primary btn-block">
+                                    <i class="fas fa-users fa-fw"></i> Manage Users
+                                </a>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <a href="<?= base_url('admin/settings') ?>" class="btn btn-success btn-block">
+                                    <i class="fas fa-cog fa-fw"></i> System Settings
+                                </a>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <a href="<?= base_url('admin/reports') ?>" class="btn btn-info btn-block">
+                                    <i class="fas fa-chart-bar fa-fw"></i> View Reports
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-<?php elseif($role === 'student'): ?>
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <div class="card bg-warning text-dark">
-                <div class="card-body">
-                    <h5>Teacher Panel</h5>
-                    <p></p>
+
+        <?php elseif ($user['role'] === 'teacher'): ?>
+            <!-- Teacher Dashboard Content -->
+            <div class="col-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Teaching Tools</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <a href="<?= base_url('teacher/classes') ?>" class="btn btn-primary btn-block">
+                                    <i class="fas fa-chalkboard-teacher fa-fw"></i> My Classes
+                                </a>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <a href="<?= base_url('teacher/assignments') ?>" class="btn btn-success btn-block">
+                                    <i class="fas fa-tasks fa-fw"></i> Assignments
+                                </a>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <a href="<?= base_url('teacher/grades') ?>" class="btn btn-info btn-block">
+                                    <i class="fas fa-graduation-cap fa-fw"></i> Gradebook
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+
+        <?php else: ?>
+            <!-- Student Dashboard Content -->
+            <div class="col-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">My Learning</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <a href="<?= base_url('student/courses') ?>" class="btn btn-primary btn-block">
+                                    <i class="fas fa-book fa-fw"></i> My Courses
+                                </a>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <a href="<?= base_url('student/schedule') ?>" class="btn btn-success btn-block">
+                                    <i class="fas fa-calendar-alt fa-fw"></i> Class Schedule
+                                </a>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <a href="<?= base_url('student/grades') ?>" class="btn btn-info btn-block">
+                                    <i class="fas fa-chart-line fa-fw"></i> My Grades
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
-  <?php endif; ?>
-
- 
-   
-  </div>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>
+<?= $this->endSection() ?>

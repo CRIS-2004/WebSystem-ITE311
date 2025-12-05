@@ -1,0 +1,545 @@
+CRITICAL - 2025-12-04 14:29:46 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:29:49 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:30:01 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:30:14 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:30:16 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:30:33 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:32:02 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:32:32 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:32:33 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:32:35 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:32:59 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:33:05 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:33:39 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:33:45 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:33:50 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:33:51 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:34:00 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:35:03 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:35:09 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:36:19 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:36:22 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:36:24 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:37:03 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:37:04 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:37:05 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:37:23 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:37:24 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:37:29 --> ErrorException: Undefined variable $title
+[Method: GET, Route: login]
+in APPPATH\Views\layout.php on line 5.
+ 1 APPPATH\Views\layout.php(5): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $title', 'C:\\xampp\\htdocs\\ITE311-PARCON\\app\\Views\\layout.php', 5)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-PARCON\\app\\Views\\layout.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(242): CodeIgniter\View\View->render('layout', [], true)
+ 5 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/login', [], true)
+ 6 APPPATH\Controllers\Auth.php(141): view('auth/login')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->login()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:37:31 --> ErrorException: Undefined variable $title
+[Method: GET, Route: login]
+in APPPATH\Views\layout.php on line 5.
+ 1 APPPATH\Views\layout.php(5): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $title', 'C:\\xampp\\htdocs\\ITE311-PARCON\\app\\Views\\layout.php', 5)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-PARCON\\app\\Views\\layout.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(242): CodeIgniter\View\View->render('layout', [], true)
+ 5 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/login', [], true)
+ 6 APPPATH\Controllers\Auth.php(141): view('auth/login')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->login()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:38:36 --> ErrorException: Undefined variable $title
+[Method: GET, Route: login]
+in APPPATH\Views\layout.php on line 5.
+ 1 APPPATH\Views\layout.php(5): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $title', 'C:\\xampp\\htdocs\\ITE311-PARCON\\app\\Views\\layout.php', 5)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-PARCON\\app\\Views\\layout.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(242): CodeIgniter\View\View->render('layout', [], true)
+ 5 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/login', [], true)
+ 6 APPPATH\Controllers\Auth.php(141): view('auth/login')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->login()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:39:38 --> ErrorException: Undefined variable $title
+[Method: GET, Route: login]
+in APPPATH\Views\layout.php on line 5.
+ 1 APPPATH\Views\layout.php(5): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $title', 'C:\\xampp\\htdocs\\ITE311-PARCON\\app\\Views\\layout.php', 5)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-PARCON\\app\\Views\\layout.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(242): CodeIgniter\View\View->render('layout', [], true)
+ 5 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/login', [], true)
+ 6 APPPATH\Controllers\Auth.php(141): view('auth/login')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->login()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:39:39 --> ErrorException: Undefined variable $title
+[Method: GET, Route: login]
+in APPPATH\Views\layout.php on line 5.
+ 1 APPPATH\Views\layout.php(5): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $title', 'C:\\xampp\\htdocs\\ITE311-PARCON\\app\\Views\\layout.php', 5)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-PARCON\\app\\Views\\layout.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(242): CodeIgniter\View\View->render('layout', [], true)
+ 5 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/login', [], true)
+ 6 APPPATH\Controllers\Auth.php(141): view('auth/login')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->login()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:41:56 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:42:21 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:43:42 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:45:36 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:45:49 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:45:54 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:47:51 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:48:51 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:48:59 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:49:33 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:49:37 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:57:16 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 14:57:19 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 15:27:42 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 15:27:45 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 15:29:45 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 15:29:53 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 15:30:17 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 15:30:18 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-12-04 15:56:29 --> CodeIgniter\Filters\Exceptions\FilterException: "auth" filter must have a matching alias defined.
+[Method: GET, Route: admin/dashboard]
+in SYSTEMPATH\Filters\Filters.php on line 590.
+ 1 SYSTEMPATH\Filters\Filters.php(590): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('auth')
+ 2 SYSTEMPATH\Filters\Filters.php(641): CodeIgniter\Filters\Filters->enableFilter('auth', 'before')
+ 3 SYSTEMPATH\CodeIgniter.php(467): CodeIgniter\Filters\Filters->enableFilters([...], 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register - WebSystem</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<?= $this->extend('layout') ?>
+
+<?= $this->section('content') ?>
 
   <style>
     body {
@@ -18,8 +13,8 @@
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
       transition: transform 0.3s ease;
     }
 
@@ -47,7 +42,9 @@
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: #fff;
-      border-radius: 12px;
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.9rem;
     }
 
     .form-control:focus {
@@ -105,13 +102,13 @@
 <body class="py-5">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6">
+      <div class="col-12 col-sm-10 col-md-6 col-lg-4">
         <!-- Registration form card -->
         <div class="card">
-          <div class="card-body p-4">
-            <div class="text-center mb-4">
-              <h2>Join Website Here!</h2>
-              <p class="text-muted">Please create your account</p>
+          <div class="card-body p-2">
+            <div class="text-center mb-2">
+              <h2 class="h4 mb-1">Join Website</h2>
+              <p class="text-muted small">Create your account</p>
             </div>
 
             <?php if (session()->getFlashdata('success')): ?>
@@ -139,30 +136,30 @@
 
             <!-- Registration form -->
             <form method="post" action="<?= base_url('register') ?>">
-              <div class="mb-3">
+              <div class="mb-2">
                 <label for="name" class="form-label">Full Name</label>
                 <input type="text" class="form-control" id="name" name="name" 
                        value="<?= old('name') ?>" required>
               </div>
 
-              <div class="mb-3">
+              <div class="mb-2">
                 <label for="email" class="form-label">Email Address</label>
                 <input type="email" class="form-control" id="email" name="email" 
                        value="<?= old('email') ?>" required>
               </div>
 
-              <div class="mb-3">
+              <div class="mb-2">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
                 <div class="form-text text-light">Minimum 6 characters</div>
               </div>
 
-              <div class="mb-3">
+              <div class="mb-2">
                 <label for="password_confirm" class="form-label">Confirm Password</label>
                 <input type="password" class="form-control" id="password_confirm" name="password_confirm" required>
               </div>
               
-              <div class="mb-3">
+              <div class="mb-2">
                   <label for="role" class="form-label">Role</label>
                   <select class="form-control" id="role" name="role" required>
                       <option value="" disabled <?= old('role') ? '' : 'selected' ?>>Select Role</option>
@@ -172,11 +169,13 @@
                   </select>
               </div>
 
-              <button type="submit" class="btn btn-primary w-100">Create Account</button>
+              <button type="submit" class="btn btn-primary w-100 py-2 mt-2">
+                <i class="fas fa-user-plus me-1"></i>Create Account
+              </button>
             </form>
 
             <!-- Link to login page -->
-            <div class="text-center mt-3">
+            <div class="text-center mt-2">
               <span>Already have an account? <a href="<?= base_url('login') ?>" class="btn btn-link p-0">Sign In</a></span>
             </div>
           </div>
@@ -188,4 +187,4 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+<?= $this->endSection() ?>w
