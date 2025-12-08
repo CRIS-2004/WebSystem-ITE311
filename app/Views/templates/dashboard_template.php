@@ -9,17 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .sidebar {
+            width: 150px; /* Set fixed width */
             min-height: 100vh;
             background: #4e73df;
             background: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+            transition: all 0.3s ease;
         }
         .sidebar .nav-link {
             color: rgba(255, 255, 255, 0.8);
-            padding: 1rem;
+            padding: 1rem 1.5rem;
             font-weight: 600;
         }
         .sidebar .nav-link:hover {
-            color: #fff;
+            color: #f7f3f3ff;
             background: rgba(255, 255, 255, 0.1);
         }
         .sidebar .nav-link i {
@@ -29,6 +31,7 @@
             height: 4.375rem;
             box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
         }
+        
     </style>
 </head>
 <body>
@@ -41,14 +44,6 @@
             </div>
             <hr class="bg-light">
             <ul class="nav flex-column">
-                <?php if (session('role') !== 'admin' && session('role') !== 'teacher' && session('role') !== 'student'): ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('dashboard') ?>">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <?php endif; ?>
                 <!-- Add more sidebar links as needed -->
             </ul>
         </div>
@@ -83,11 +78,8 @@
             <!-- End of Page Content -->
         </div>
     </div>
-
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Toggle sidebar on small screens
         document.getElementById('sidebarToggleTop').addEventListener('click', function() {
             document.getElementById('sidebar').classList.toggle('d-none');
         });
