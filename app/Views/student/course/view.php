@@ -1,0 +1,295 @@
+<?= $this->extend('templates/dashboard_template') ?>
+
+<?= $this->section('content') ?>
+<div class="container-fluid">
+    <!-- Back Button -->
+    <div class="mb-3">
+        <a href="<?= site_url('student/dashboard') ?>" class="btn btn-secondary btn-sm">
+            <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+        </a>
+    </div>
+    
+    <!-- Course Header -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <div>
+            <h1 class="h3 mb-0 text-gray-800"><?= esc($course['course_name']) ?></h1>
+            <p class="mb-0 text-muted">
+                <i class="fas fa-user-tie me-1"></i>
+                <?= esc($course['instructor_name'] ?? ($course['course_instructor'] ?? 'Instructor: Not specified')) ?>
+            </p>
+        </div>
+        <?php if ($isEnrolled): ?>
+            <div class="text-center">
+                <div class="progress-circle d-inline-block" data-value="<?= $progress ?>">
+                    <svg class="progress-circle-svg" viewBox="0 0 100 100">
+                        <circle class="progress-circle-bg" cx="50" cy="50" r="45" />
+                        <circle class="progress-circle-fill" cx="50" cy="50" r="45" 
+                                style="--progress: <?= $progress / 100 ?>;" />
+                    </svg>
+                    <div class="progress-circle-text"><?= $progress ?>%</div>
+                </div>
+                <div class="text-muted mt-2">Course Progress</div>
+            </div>
+        <?php else: ?>
+            <button class="btn btn-primary enroll-btn" data-course-id="<?= $course['course_id'] ?>">
+                <i class="fas fa-plus-circle me-1"></i> Enroll Now
+            </button>
+        <?php endif; ?>
+    </div>
+
+    <!-- Course Overview -->
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <!-- Course Description -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">About This Course</h6>
+                </div>
+                <div class="card-body">
+                    <?= $course['description'] ?? 'No description available for this course.' ?>
+                </div>
+            </div>
+
+            <!-- Course Content -->
+            <div class="card shadow mb-4" id="course-content">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary">Course Content</h6>
+                    <span class="badge bg-primary"><?= count($modules) ?> Modules</span>
+                </div>
+                <div class="list-group list-group-flush">
+                    <?php if (!empty($modules)): ?>
+                        <?php foreach ($modules as $module): ?>
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-1"><?= esc($module['title']) ?></h6>
+                                    <span class="badge bg-light text-dark"><?= count($module['lessons'] ?? []) ?> Lessons</span>
+                                </div>
+                                <p class="mb-1 small text-muted"><?= esc($module['description'] ?? '') ?></p>
+                                <?php if (!empty($module['lessons'])): ?>
+                                    <div class="mt-2">
+                                        <?php foreach ($module['lessons'] as $lesson): ?>
+                                            <a href="#" class="d-flex align-items-center text-decoration-none text-dark p-2 lesson-item">
+                                                <span class="flex-grow-1"><?= esc($lesson['title']) ?></span>
+                                                <span class="badge bg-light text-muted"><?= $lesson['duration'] ?? '5 min' ?></span>
+                                            </a>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="list-group-item">
+                            <p class="text-muted mb-0">No content available yet.</p>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Course Details -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Course Details</h6>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="fas fa-user-graduate me-2 text-primary"></i>
+                            <strong>Instructor:</strong> <?= esc($course['instructor_name'] ?? ($course['course_instructor'] ?? 'Not specified')) ?>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-door-open me-2 text-primary"></i>
+                            <strong>Room:</strong> <?= esc($course['room'] ?? ($course['room'] ?? 'Not specified')) ?>
+                        </li>
+                        <li class="mb-2">
+                            <i class="far fa-calendar-alt me-2 text-primary"></i>
+                            <strong>Last Updated:</strong> <?= date('M d, Y', strtotime($course['updated_at'] ?? 'now')) ?>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-tasks me-2 text-primary"></i>
+                            <strong>Modules:</strong> <?= count($modules) ?>
+                        </li>
+                        <?php if ($isEnrolled): ?>
+                            <li class="mb-2">
+                                <i class="fas fa-calendar-check me-2 text-primary"></i>
+                                <strong>Enrolled On:</strong> <?= date('M d, Y', strtotime($enrollment['enrollment_date'] ?? 'now')) ?>
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-chart-line me-2 text-primary"></i>
+                                <strong>Progress:</strong> <?= $progress ?>% Complete
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- What You'll Learn -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">What You'll Learn</h6>
+                </div>
+                <div class="card-body">
+                    <ul class="list-checked">
+                        <li>Understand key concepts and principles</li>
+                        <li>Apply knowledge to real-world scenarios</li>
+                        <li>Develop practical skills</li>
+                        <li>Complete hands-on projects</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Alert -->
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 9998; width: 350px;">
+    <div id="enrollmentAlert" class="alert alert-dismissible fade" role="alert">
+        <span id="alertMessage"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+
+<?= $this->endSection() ?>
+
+<?= $this->section('styles') ?>
+<style>
+    .progress-circle {
+        position: relative;
+        width: 60px;
+        height: 60px;
+    }
+    
+    .progress-circle-svg {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+    }
+    
+    .progress-circle-bg {
+        fill: none;
+        stroke: #e9ecef;
+        stroke-width: 8;
+    }
+    
+    .progress-circle-fill {
+        fill: none;
+        stroke: #4e73df;
+        stroke-width: 8;
+        stroke-linecap: round;
+        stroke-dasharray: 283;
+        stroke-dashoffset: calc(283 - (283 * var(--progress)));
+        transition: stroke-dashoffset 0.5s ease;
+    }
+    
+    .progress-circle-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: #4e73df;
+    }
+    
+    .list-checked {
+        list-style: none;
+        padding-left: 0;
+    }
+    
+    .list-checked li {
+        position: relative;
+        padding-left: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .list-checked li:before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #28a745;
+    }
+    
+    .lesson-item {
+        border-radius: 4px;
+        transition: all 0.2s;
+    }
+    
+    .lesson-item:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .lesson-item.completed {
+        color: #6c757d;
+    }
+    
+    .lesson-item.completed .fa-play-circle {
+        color: #28a745;
+    }
+</style>
+<?= $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+<script>
+$(document).ready(function() {
+    // Handle enroll button click
+    $(document).on('click', '.enroll-btn', function() {
+        const button = $(this);
+        const courseId = button.data('course-id');
+        
+        // Update button state
+        button.html('<span class="spinner-border spinner-border-sm me-1" role="status"></span>Enrolling...').prop('disabled', true);
+        
+        // Send AJAX request
+        $.ajax({
+            url: '<?= site_url('course/enroll') ?>',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                '<?= csrf_token() ?>': '<?= csrf_hash() ?>',
+                'course_id': courseId
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    showAlert('success', response.message);
+                    // Reload the page after a short delay
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
+                } else {
+                    showAlert('danger', response.message || 'An error occurred. Please try again.');
+                    button.html('<i class="fas fa-plus-circle me-1"></i> Enroll Now').prop('disabled', false);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Enrollment error:', status, error);
+                showAlert('danger', 'An error occurred while processing your request. Please try again.');
+                button.html('<i class="fas fa-plus-circle me-1"></i> Enroll Now').prop('disabled', false);
+            }
+        });
+    });
+    
+    // Function to show alerts
+    function showAlert(type, message) {
+        const alert = $('#enrollmentAlert');
+        alert.removeClass('alert-success alert-danger alert-warning')
+             .addClass(`alert-${type} show`)
+             .find('#alertMessage')
+             .html(`<i class="${type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'} me-2"></i>${message}`);
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            alert.removeClass('show');
+        }, 5000);
+    }
+    
+    // Handle lesson item clicks
+    $('.lesson-item').on('click', function(e) {
+        e.preventDefault();
+        // Add your lesson viewing logic here
+        console.log('Lesson clicked');
+    });
+});
+</script>
+<?= $this->endSection() ?>

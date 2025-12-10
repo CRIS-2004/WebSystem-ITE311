@@ -78,6 +78,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         <?php 
                         // Get all users
                         $userModel = new \App\Models\UserModel();
@@ -95,10 +96,13 @@
                                 </span>
                             </td>
                             <td>
+                                <?php if ($user['role'] !== 'Admin'): ?>
                                 <a href="<?= base_url('admin/users/edit/' . $user['id']) ?>" 
-                                   class="btn btn-sm btn-primary" title="Edit">
+                                   class="btn btn-sm btn-primary" 
+                                   title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
+                                <?php endif; ?>
                                 <?php if ($user['id'] != session()->get('userID')): ?>
                                 <a href="<?= base_url('admin/users/delete/' . $user['id']) ?>" 
                                    class="btn btn-sm btn-danger" 
@@ -113,9 +117,56 @@
                     </tbody>
                 </table>
             </div>
-            <div class="text-center mt-3">
+             <div class="text-center mt-3">
                 <a href="<?= base_url('admin/users') ?>" class="btn btn-primary">View All Users</a>
-            </div>
+            </div><br>
+            <!-- Courses Section -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <h6 class="m-0 font-weight-bold text-primary">Recent Courses</h6>
+        <a href="<?= site_url('admin/courses') ?>" class="btn btn-primary btn-sm">
+            <i class="fas fa-book"></i> View All Courses
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Course Name</th>
+                        <th>Instructor</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($recentCourses)): ?>
+                        <?php foreach ($recentCourses as $course): ?>
+                        <tr>
+                            <td><?= esc($course['course_code']) ?></td>
+                            <td><?= esc($course['course_name']) ?></td>
+                            <td><?= esc($course['instructor_name']) ?></td>
+                            <td><?= date('M d, Y', strtotime($course['created_at'])) ?></td>
+                            <td>
+                                <a href="<?= site_url('admin/courses/view/' . $course['course_id']) ?>" 
+                                   class="btn btn-info btn-sm" 
+                                   title="View Course">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5" class="text-center">No courses found</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 </div>

@@ -20,6 +20,16 @@
             <h6 class="m-0 font-weight-bold text-primary">Users List</h6>
         </div>
         <div class="card-body">
+            <?php if (session()->getFlashdata('success')): ?>
+                <div class="alert alert-success">
+                    <?= session()->getFlashdata('success') ?>
+                </div>
+            <?php endif; ?>
+            <?php if (session()->getFlashdata('error')): ?>
+                <div class="alert alert-danger">
+                    <?= session()->getFlashdata('error') ?>
+                </div>
+            <?php endif; ?>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -28,36 +38,37 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Status</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($users as $user): ?>
-                        <tr>
-                            <td><?= $user['id'] ?></td>
-                            <td><?= esc($user['name']) ?></td>
-                            <td><?= esc($user['email']) ?></td>
-                            <td>
-                                <span class="badge <?= $user['role'] === 'Admin' ? 'bg-primary' : ($user['role'] === 'Teacher' ? 'bg-success' : 'bg-info') ?>">
-                                    <?= $user['role'] ?>
-                                </span>
-                            </td>
-                            <td><?= date('M d, Y', strtotime($user['created_at'])) ?></td>
-                            <td>
-                                <a href="<?= base_url('admin/users/edit/' . $user['id']) ?>" class="btn btn-sm btn-primary" title="Edit">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <?php if ($user['id'] != session()->get('userID')): ?>
-                                <a href="<?= base_url('admin/users/delete/' . $user['id']) ?>" 
-                                   class="btn btn-sm btn-danger" 
-                                   onclick="return confirm('Are you sure you want to delete this user?')" 
-                                   title="Delete">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td><?= $user['id'] ?></td>
+                                <td><?= esc($user['name']) ?></td>
+                                <td><?= esc($user['email']) ?></td>
+                                <td><?= esc($user['role']) ?></td>
+                                <td>
+                                    <span class="badge <?= $user['status'] === 'active' ? 'badge-success' : 'badge-secondary' ?>">
+                                        <?= ucfirst($user['status']) ?>
+                                    </span>
+                                </td>
+                                <td><?= date('M d, Y', strtotime($user['created_at'])) ?></td>
+                                <td>
+                                    <?php if ($user['role'] !== 'Admin'): ?>
+                                    <a href="<?= base_url('admin/users/edit/' . $user['id']) ?>" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <?php endif; ?>
+                                    <?php if ($user['id'] != session()->get('userID')): ?>
+                                        <a href="<?= base_url('admin/users/delete/' . $user['id']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -69,11 +80,10 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('scripts') ?>
+
 <!-- Page level plugins -->
 <script src="<?= base_url('assets/vendor/datatables/jquery.dataTables.min.js') ?>"></script>
 <script src="<?= base_url('assets/vendor/datatables/dataTables.bootstrap4.min.js') ?>"></script>
-
-<!-- Page level custom scripts -->
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable({

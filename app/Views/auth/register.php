@@ -163,7 +163,6 @@
                   <label for="role" class="form-label">Role</label>
                   <select class="form-control" id="role" name="role" required>
                       <option value="" disabled <?= old('role') ? '' : 'selected' ?>>Select Role</option>
-                      <option value="admin" <?= old('role') == 'Admin' ? 'selected' : '' ?>>Admin</option>
                       <option value="teacher" <?= old('role') == 'teacher' ? 'selected' : '' ?>>Teacher</option>
                       <option value="student" <?= old('role') == 'student' ? 'selected' : '' ?>>Student</option>
                   </select>

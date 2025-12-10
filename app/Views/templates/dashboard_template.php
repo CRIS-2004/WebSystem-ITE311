@@ -8,6 +8,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        .status-badge {
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+/* Add some spacing between action buttons */
+.btn-sm {
+    margin-right: 0.25rem;
+}
         .sidebar {
             width: 150px; /* Set fixed width */
             min-height: 100vh;
@@ -44,6 +59,7 @@
             </div>
             <hr class="bg-light">
             <ul class="nav flex-column">
+                <!-- Navigation items removed as requested -->
                 <!-- Add more sidebar links as needed -->
             </ul>
         </div>
@@ -78,11 +94,27 @@
             <!-- End of Page Content -->
         </div>
     </div>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Sidebar toggle
         document.getElementById('sidebarToggleTop').addEventListener('click', function() {
             document.getElementById('sidebar').classList.toggle('d-none');
         });
+
+        // CSRF token setup for AJAX
+        var csrfName = '<?= csrf_token() ?>';
+        var csrfHash = '<?= csrf_hash() ?>';
+
+        // Global AJAX setup
+        $.ajaxSetup({
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                '<?= csrf_token() ?>': '<?= csrf_hash() ?>'
+            }
+        });
     </script>
+    <?= $this->renderSection('scripts') ?>
 </body>
 </html>
