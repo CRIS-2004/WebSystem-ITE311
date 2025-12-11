@@ -9,20 +9,16 @@ class Teacher extends BaseController
 {
     protected $courseModel;
     protected $userModel;
+    protected $materialModel;
+
 
      public function __construct()
-    {
-        // Load the models first
-        $this->courseModel = new \App\Models\CourseModel();
-        $this->userModel = new \App\Models\UserModel();
-        
-        // Then check authentication
-        if (!session()->get('isLoggedIn') || session()->get('role') !== 'teacher') {
-            return redirect()->to('/login');
-        }
-        
-        helper(['form', 'url']);
-    }
+{
+    $this->materialModel = new \App\Models\MaterialModel();
+    $this->courseModel = new \App\Models\CourseModel();
+    // ... other model initializations
+    helper(['form', 'url', 'file']);
+}
 
     public function dashboard()
     {
@@ -58,7 +54,7 @@ class Teacher extends BaseController
     public function storeCourse()
     {
         $rules = [
-            'course_code' => 'required|min_length[3]|max_length[50]|is_unique[courses.course_code]',
+            'course_code' => 'required|min_length[3]|max_length[50]',
             'course_name' => 'required|min_length[3]|max_length[255]',
             'description' => 'required|min_length[10]',
             'cn_number' => 'permit_empty|max_length[50]',
@@ -257,65 +253,218 @@ class Teacher extends BaseController
     }
 
     public function addStudent($courseId, $studentId)
-    {
-        try {
-            // Get the database connection
-            $db = \Config\Database::connect();
+{
+    try {
+        $db = \Config\Database::connect();
+        helper('notification');
+        
+        $course = $db->table('courses')
+            ->where('course_id', $courseId)
+            ->get()
+            ->getRowArray();
             
-            // Check if already enrolled
-            $isEnrolled = $db->table('enrollments')
-                ->where('course_id', $courseId)
-                ->where('user_id', $studentId)
-                ->countAllResults() > 0;
+        $teacherName = session()->get('name') ?? 'Teacher';
+        
+        // Check if already enrolled
+        $isEnrolled = $db->table('enrollments')
+            ->where('course_id', $courseId)
+            ->where('user_id', $studentId)
+            ->countAllResults() > 0;
 
-            if ($isEnrolled) {
-                return redirect()->back()->with('error', 'Student is already enrolled in this course');
+        if ($isEnrolled) {
+            if ($course) {
+                notify_duplicate_enrollment($studentId, $course['course_name']);
             }
-
-            // Add enrollment
-            $enrollmentData = [
-                'course_id' => $courseId,
-                'user_id' => $studentId,
-                'enrollment_date' => date('Y-m-d H:i:s')
-            ];
-            
-            $db->table('enrollments')->insert($enrollmentData);
-
-            return redirect()->back()->with('success', 'Student added to course successfully');
-        } catch (\Exception $e) {
-            log_message('error', 'Error adding student to course: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Failed to add student to course: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Student is already enrolled in this course');
         }
+
+        // Add enrollment
+        $enrollmentData = [
+            'course_id' => $courseId,
+            'user_id' => $studentId,
+            'enrollment_date' => date('Y-m-d H:i:s')
+        ];
+        
+        $db->table('enrollments')->insert($enrollmentData);
+        
+        if ($course) {
+            notify_student_enrollment($studentId, $course['course_name'], $teacherName);
+        }
+
+        return redirect()->back()->with('success', 'Student added to course successfully');
+    } catch (\Exception $e) {
+        log_message('error', 'Error adding student to course: ' . $e->getMessage());
+        return redirect()->back()->with('error', 'Failed to add student to course: ' . $e->getMessage());
     }
+}
 
     public function removeStudent($courseId, $studentId)
+{
+    try {
+        $db = \Config\Database::connect();
+        helper('notification');
+        
+        $course = $db->table('courses')
+            ->where('course_id', $courseId)
+            ->get()
+            ->getRowArray();
+            
+        $teacherName = session()->get('name') ?? 'Teacher';
+        
+        // Delete the enrollment
+        $db->table('enrollments')
+            ->where('course_id', $courseId)
+            ->where('user_id', $studentId)
+            ->delete();
+
+        // Add notification for the student
+        if ($course) {
+            notify_enrollment_removal($studentId, $course['course_name'], $teacherName);
+        }
+
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'Student removed from course successfully'
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Student removed from course successfully');
+    } catch (\Exception $e) {
+        log_message('error', 'Error removing student: ' . $e->getMessage());
+        
+        if ($this->request->isAJAX()) {
+            return $this->response->setStatusCode(500)->setJSON([
+                'status' => 'error',
+                'message' => 'Failed to remove student: ' . $e->getMessage()
+            ]);
+        }
+
+        return redirect()->back()->with('error', 'Failed to remove student: ' . $e->getMessage());
+    }
+}
+
+    /**
+     * View course materials
+     */
+    public function viewMaterials($courseId = null)
     {
         try {
-            $db = \Config\Database::connect();
-            $db->table('enrollments')
-                ->where('course_id', $courseId)
-                ->where('user_id', $studentId)
-                ->delete();
-
-            if ($this->request->isAJAX()) {
-                return $this->response->setJSON([
-                    'status' => 'success',
-                    'message' => 'Student removed from course successfully'
-                ]);
-            }
-
-            return redirect()->back()->with('success', 'Student removed from course successfully');
-        } catch (\Exception $e) {
-            log_message('error', 'Error removing student: ' . $e->getMessage());
+            // Debug: Log the course ID
+            log_message('debug', 'Viewing materials for course ID: ' . $courseId);
             
-            if ($this->request->isAJAX()) {
-                return $this->response->setStatusCode(500)->setJSON([
-                    'status' => 'error',
-                    'message' => 'Failed to remove student: ' . $e->getMessage()
-                ]);
+            // Load the course
+            $course = $this->courseModel->find($courseId);
+            
+            // Debug: Log course data
+            log_message('debug', 'Course data: ' . print_r($course, true));
+            
+            // Verify course exists and teacher is assigned to it
+            if (!$course) {
+                log_message('error', 'Course not found with ID: ' . $courseId);
+                return redirect()->to('/teacher/dashboard')->with('error', 'Course not found');
+            }
+            
+            if ($course['course_instructor'] != session()->get('userID')) {
+                log_message('error', 'Access denied: User ' . session()->get('userID') . ' is not the instructor for course ' . $courseId);
+                return redirect()->to('/teacher/dashboard')->with('error', 'Access denied');
+            }
+            
+            // Get all materials for the course using the model's method
+            log_message('debug', 'Attempting to get materials for course ID: ' . $courseId);
+            $materials = $this->materialModel->getMaterialsByCourse($courseId);
+            
+            // Debug: Log materials data
+            log_message('debug', 'Retrieved materials: ' . print_r($materials, true));
+            
+           $data = [
+                'course' => $this->courseModel->find($courseId),
+                'materials' => $this->materialModel->where('course_id', $courseId)->findAll()
+            ];
+            return view('teacher/materials', $data);
+            
+        } catch (\Exception $e) {
+            $errorMessage = 'Error in viewMaterials: ' . $e->getMessage() . ' in ' . $e->getFile() . ' on line ' . $e->getLine();
+            log_message('error', $errorMessage);
+            log_message('error', 'Stack trace: ' . $e->getTraceAsString());
+            return redirect()->back()->with('error', 'An error occurred while loading course materials: ' . $e->getMessage());
+        }
+}
+
+    /**
+     * Handle file upload
+     */
+    public function uploadMaterial($courseId = null)
+{
+    try {
+        $file = $this->request->getFile('material');
+        
+        if ($file->isValid() && !$file->hasMoved()) {
+            $newName = $file->getRandomName();
+            $uploadPath = 'uploads/materials/' . date('Y/m/d');
+            
+            // Create directory if it doesn't exist
+            if (!is_dir(WRITEPATH . $uploadPath)) {
+                mkdir(WRITEPATH . $uploadPath, 0777, true);
+            }
+            
+            $file->move(WRITEPATH . $uploadPath, $newName);
+            $filePath = $uploadPath . '/' . $newName;
+
+            // Save to database
+            $data = [
+                'course_id' => $courseId,
+                'file_name' => $file->getClientName(),
+                'file_path' => $filePath,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+
+            $this->materialModel->insert($data);
+
+            return redirect()->back()->with('success', 'File uploaded successfully');
+        }
+        
+        return redirect()->back()->with('error', 'Failed to upload file');
+        
+    } catch (\Exception $e) {
+        log_message('error', 'Upload error: ' . $e->getMessage());
+        return redirect()->back()->with('error', $e->getMessage());
+    }
+}
+
+    /**
+     * Delete a material
+     */
+    public function deleteMaterial($materialId = null)
+    {
+        try {
+            $material = $this->materialModel->find($materialId);
+            
+            if (!$material) {
+                return redirect()->back()->with('error', 'Material not found');
             }
 
-            return redirect()->back()->with('error', 'Failed to remove student: ' . $e->getMessage());
+            $course = $this->courseModel->find($material['course_id']);
+            
+            // Verify course exists and teacher is assigned to it
+            if (!$course || $course['course_instructor'] != session()->get('userID')) {
+                return redirect()->back()->with('error', 'You are not authorized to delete this material');
+            }
+
+            $filePath = WRITEPATH . str_replace('writable/', '', $material['file_path']);
+            
+            // Delete the file if it exists
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+
+            // Delete the database record
+            $this->materialModel->delete($materialId);
+
+            return redirect()->back()->with('success', 'Material deleted successfully');
+        } catch (\Exception $e) {
+            log_message('error', 'Error in deleteMaterial: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred while deleting the material');
         }
     }
 }

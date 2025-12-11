@@ -19,10 +19,15 @@ $routes->group('', ['namespace' => 'App\Controllers'], function($routes) {
     $routes->get('/logout', 'Auth::logout');
 });
 
+
 // Admin Routes 
 $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth'], function($routes) {
     // Dashboard
     $routes->get('dashboard', 'Admin::dashboard');
+    // Materials Management
+    $routes->get('materials/download/(:num)', 'Materials::download/$1', ['as' => 'admin.materials.download']);
+    $routes->post('courses/(:num)/materials/delete/(:num)', 'Materials::delete/$1/$2', ['as' => 'admin.courses.materials.delete']);
+    // Course Management
     $routes->get('courses', 'Admin::courses');
     $routes->get('courses/view/(:num)', 'Admin::viewCourse/$1');
     $routes->get('courses/edit/(:num)', 'Admin::editCourse/$1');
@@ -32,9 +37,15 @@ $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth'], 
     $routes->post('courses/add-student/(:num)', 'Admin::addStudent/$1');
     $routes->delete('courses/remove-student/(:num)/(:num)', 'Admin::removeStudent/$1/$2');
     $routes->delete('courses/delete/(:num)', 'Admin::deleteCourse/$1');
+    $routes->post('courses/(:num)/materials/upload', 'Materials::upload/$1', ['as' => 'admin.courses.materials.upload']);
+    $routes->post('courses/(:num)/materials/delete/(:num)', 'Materials::delete/$1/$2', ['as' => 'admin.courses.materials.delete']);
+    $routes->delete('courses/(:num)/materials/delete/(:num)', 'Materials::delete/$1/$2', ['as' => 'admin.courses.materials.delete']);
+    
+    // Course Materials
+    $routes->get('courses/(:num)/materials', 'Materials::view/$1', ['as' => 'admin.courses.materials.view']);
     
     // User Management
-     $routes->group('users', function($routes) {
+    $routes->group('users', function($routes) {
         $routes->get('', 'Admin::users', ['as' => 'admin.users']);
         $routes->get('new', 'Admin::newUser', ['as' => 'admin.users.new']);
         $routes->post('store', 'Admin::storeUser', ['as' => 'admin.users.store']);
@@ -48,6 +59,8 @@ $routes->group('admin', ['namespace' => 'App\Controllers', 'filter' => 'auth'], 
 $routes->group('teacher', ['namespace' => 'App\Controllers', 'filter' => 'auth'], function($routes) {
     $routes->get('dashboard', 'Teacher::dashboard');
     $routes->delete('courses/delete/(:num)', 'Teacher::deleteCourse/$1');
+     $routes->post('courses/materials/upload/(:num)', 'Teacher::uploadMaterial/$1', ['as' => 'teacher.courses.materials.upload']);
+        
     
     // Course Management
     $routes->group('courses', function($routes) {
@@ -56,17 +69,26 @@ $routes->group('teacher', ['namespace' => 'App\Controllers', 'filter' => 'auth']
         $routes->get('edit/(:num)', 'Teacher::editCourse/$1');
         $routes->match(['put', 'post'], 'update/(:num)', 'Teacher::updateCourse/$1');
         $routes->post('delete/(:num)', 'Teacher::deleteCourse/$1');
+        $routes->post('courses/materials/upload/(:num)', 'Teacher::uploadMaterial/$1', ['as' => 'teacher.courses.materials.upload']);
         
         // Student Management
         $routes->get('students/(:num)', 'Teacher::students/$1', ['as' => 'teacher.courses.students']);
         $routes->post('students/add/(:num)/(:num)', 'Teacher::addStudent/$1/$2', ['as' => 'teacher.courses.students.add']);
         $routes->match(['delete', 'post'], 'students/remove/(:num)/(:num)', 'Teacher::removeStudent/$1/$2', ['as' => 'teacher.courses.students.remove']);
+        
+        // Materials Management
+        $routes->get('(:num)/materials', 'Teacher::viewMaterials/$1', ['as' => 'teacher.courses.materials.view']);
+        $routes->post('materials/upload/(:num)', 'Teacher::uploadMaterial/$1', ['as' => 'teacher.courses.materials.upload']);
+        $routes->delete('materials/delete/(:num)', 'Teacher::deleteMaterial/$1', ['as' => 'teacher.materials.delete']);
     });
 });
 
 // Student 
 $routes->group('student', ['namespace' => 'App\Controllers', 'filter' => 'auth'], function($routes) {
     $routes->get('dashboard', 'Student::dashboard');
+    $routes->get('courses/(:num)', 'Student::viewCourse/$1', ['as' => 'student.courses.view']);
+    $routes->get('materials/download/(:num)', 'Materials::download/$1', ['as' => 'student.materials.download']);
+    $routes->get('course/view/(:num)', 'Student::view/$1', ['as' => 'student.course.view']);
 });
 
 //  Dashboard 
@@ -77,4 +99,30 @@ $routes->group('', ['namespace' => 'App\Controllers', 'filter' => 'auth'], funct
     $routes->post('course/enroll', 'Course::enroll');
     $routes->get('course/view/(:num)', 'Course::view/$1', ['as' => 'course.view']);
     $routes->get('course/(:num)', 'Course::view/$1');
+   $routes->get('materials/download/(:num)', 'Materials::download/$1', ['filter' => 'auth']);
+    $routes->get('course/view/(:num)', 'Student::view/$1', ['as' => 'student.course.view']);
+});
+
+// Public materials view route (accessible to all authenticated users)
+$routes->group('', ['namespace' => 'App\Controllers', 'filter' => 'auth'], function($routes) {
+    $routes->get('materials/download/(:num)', 'Materials::download/$1', ['as' => 'materials.download']);
+    $routes->get('courses/(:num)/materials', 'Materials::view/$1', ['as' => 'materials.view']);
+    $routes->get('direct-upload', 'Materials::directUpload', ['as' => 'materials.direct.upload']);
+    $routes->post('direct-upload', 'Materials::handleDirectUpload');
+});
+
+// Notification routes
+$routes->group('notifications', function($routes) {
+    $routes->get('', 'Notification::get');
+    $routes->post('mark_read/(:num)', 'Notification::mark_read/$1');
+});
+$routes->get('test-notifications', function() {
+    $notificationModel = new \App\Models\NotificationModel();
+    $userId = session('user_id') ?? 1; // Test with user ID 1 or your test user
+    
+    $notifications = $notificationModel->where('user_id', $userId)->findAll();
+    
+    echo '<h1>Test Notifications</h1>';
+    echo '<pre>' . print_r($notifications, true) . '</pre>';
+    echo '<p><a href="/">Back to site</a></p>';
 });

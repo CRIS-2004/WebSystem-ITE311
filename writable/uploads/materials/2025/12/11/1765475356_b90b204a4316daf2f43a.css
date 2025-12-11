@@ -1,0 +1,18 @@
+body{
+    background-color: aqua;
+}
+.container{
+    border-left:300px;
+    width: 550px;
+    height: 50px;
+    background-color: #c9c9c9;
+    padding-top: 20px;
+    box-sizing: border-box;
+    border-radius: 0 20px 20px 0;
+    color: white;
+}
+p{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+}

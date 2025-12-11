@@ -79,11 +79,16 @@
                                     <td><?= esc($course['room'] ?? 'TBA') ?></td>
                                     <td>
                                         <a href="<?= site_url('teacher/courses/students/' . $course['course_id']) ?>" 
-                                            class="btn btn-info btn-sm">
+                                            class="btn btn-info btn-sm mb-1">
                                                 <i class="fas fa-users"></i> View Students
                                             </a>
+                                        <a href="<?= site_url('teacher/courses/' . $course['course_id'] . '/materials') ?>" 
+                                           class="btn btn-sm btn-success mb-1" 
+                                           title="View Course">
+                                            <i class="fas fa-eye"></i> View
+                                        </a>
                                         <a href="<?= site_url('teacher/courses/edit/' . $course['course_id']) ?>" 
-                                           class="btn btn-sm btn-primary" 
+                                           class="btn btn-sm btn-primary mb-1" 
                                            title="Edit">
                                             <i class="fas fa-edit"></i>
                                         </a>

@@ -40,17 +40,22 @@
                                 <?php endif; ?>
                             </td>
                             <td><?= date('M d, Y', strtotime($course['created_at'])) ?></td>
-                            <td>
+                            <td class="text-nowrap">
                                 <a href="<?= site_url('admin/courses/view/' . $course['course_id']) ?>" 
                                    class="btn btn-info btn-sm" 
                                    title="View Course">
                                     <i class="fas fa-eye"></i>
                                 </a>
                                 <a href="<?= site_url('admin/courses/edit/' . $course['course_id']) ?>" 
-                                        class="btn btn-warning btn-sm" 
-                                        title="Edit Course">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
+                                   class="btn btn-warning btn-sm" 
+                                   title="Edit Course">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="<?= site_url('admin/courses/' . $course['course_id'] . '/materials') ?>" 
+                                   class="btn btn-primary btn-sm" 
+                                   title="View Course Materials">
+                                    <i class="fas fa-book"></i>
+                                </a>
                                 <form action="<?= site_url('admin/courses/delete/' . $course['course_id']) ?>" 
                                       method="post" 
                                       class="d-inline"
@@ -81,6 +86,14 @@
             "order": [[5, "desc"]] // Sort by created_at by default
         });
     });
+    $(document).ready(function() {
+    // Replace '.your-table-class' with your actual table's class
+    if ($.fn.DataTable) {
+        $('.table').DataTable(); // or whatever your table's class is
+    } else {
+        console.error('DataTables not loaded!');
+    }
+});
 </script>
 <?= $this->endSection() ?>
 

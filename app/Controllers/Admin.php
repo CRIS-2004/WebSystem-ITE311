@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 use CodeIgniter\API\ResponseTrait;
+use CodeIgniter\HTTP\Files\UploadedFile;
 
 class Admin extends BaseController
 {
@@ -19,6 +20,9 @@ class Admin extends BaseController
         $this->userModel = new \App\Models\UserModel();
         $this->validation = \Config\Services::validation();
         $this->db = \Config\Database::connect();
+        
+        // Load form helper
+        helper('form');
         
         // Debug: Log session data
         log_message('debug', 'Session data: ' . print_r(session()->get(), true));
@@ -38,6 +42,7 @@ class Admin extends BaseController
             exit();
         }
     }
+    
 
     public function dashboard()
 {
@@ -371,6 +376,8 @@ public function courses()
     ];
     
     return view('admin/courses/index', $data);
+    
+    
 }
 
 public function viewCourse($courseId = null)
@@ -421,11 +428,18 @@ public function viewCourse($courseId = null)
             ->getResultArray();
     }
 
+    // Get course materials
+    $materialModel = new \App\Models\MaterialModel();
+    $materials = $materialModel->where('course_id', $courseId)
+                             ->orderBy('created_at', 'DESC')
+                             ->findAll();
+
     $data = [
         'title' => 'Course Details',
         'course' => $course,
         'enrolledStudents' => $enrolledStudents,
-        'availableStudents' => $availableStudents
+        'availableStudents' => $availableStudents,
+        'materials' => $materials
     ];
 
     return view('admin/courses/view', $data);
@@ -537,7 +551,7 @@ public function storeCourse()
     
     // Validation rules
     $rules = [
-        'course_code' => 'required|min_length[3]|max_length[50]|is_unique[courses.course_code]',
+        'course_code' => 'required|min_length[3]|max_length[50]',
         'course_name' => 'required|min_length[3]|max_length[255]',
         'description' => 'required|min_length[10]',
         'course_instructor' => 'required|numeric',
@@ -573,37 +587,17 @@ public function addStudent($courseId)
 {
     $db = \Config\Database::connect();
     $request = \Config\Services::request();
-    
-    // Debug: Log the POST data
-    log_message('debug', 'POST data: ' . print_r($request->getPost(), true));
+    helper('notification');
     
     $studentId = $request->getPost('user_id');
     
-    // Debug: Log the student ID and course ID
-    log_message('debug', "Attempting to add student ID: $studentId to course ID: $courseId");
-
-    // Verify course exists
     $course = $db->table('courses')
         ->where('course_id', $courseId)
-        ->countAllResults();
-        
-    if (!$course) {
-        log_message('error', "Course not found: $courseId");
-        return redirect()->back()->with('error', 'Course not found');
-    }
-
-    // Verify student exists and is a student
-    $student = $db->table('users')
-        ->where('id', $studentId)
-        ->where('role', 'Student')
         ->get()
         ->getRowArray();
-
-    if (!$student) {
-        log_message('error', "Invalid student selected: $studentId");
-        return redirect()->back()->with('error', 'Invalid student selected');
-    }
-
+    
+    $adminName = session()->get('name') ?? 'Admin';
+    
     // Check if already enrolled
     $enrollment = $db->table('enrollments')
         ->where('course_id', $courseId)
@@ -611,7 +605,9 @@ public function addStudent($courseId)
         ->countAllResults();
 
     if ($enrollment > 0) {
-        log_message('info', "Student $studentId is already enrolled in course $courseId");
+        if ($course) {
+            notify_duplicate_enrollment($studentId, $course['course_name']);
+        }
         return redirect()->back()->with('error', 'Student is already enrolled in this course');
     }
 
@@ -619,8 +615,14 @@ public function addStudent($courseId)
     try {
         $db->table('enrollments')->insert([
             'course_id' => $courseId,
-            'user_id' => $studentId
+            'user_id' => $studentId,
+            'enrollment_date' => date('Y-m-d H:i:s')
         ]);
+        
+        if ($course) {
+            notify_student_enrollment($studentId, $course['course_name'], $adminName);
+        }
+        
         log_message('info', "Successfully enrolled student $studentId in course $courseId");
         return redirect()->back()->with('message', 'Student added to course successfully');
     } catch (\Exception $e) {

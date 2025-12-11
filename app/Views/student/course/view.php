@@ -1,6 +1,12 @@
 <?= $this->extend('templates/dashboard_template') ?>
 
 <?= $this->section('content') ?>
+<?php 
+// Debug output
+log_message('debug', 'Rendering student/course/view.php');
+log_message('debug', 'Materials data: ' . print_r(isset($materials) ? $materials : 'No materials variable', true));
+log_message('debug', 'Course data: ' . print_r(isset($course) ? $course : 'No course variable', true));
+?>
 <div class="container-fluid">
     <!-- Back Button -->
     <div class="mb-3">
@@ -12,31 +18,29 @@
     <!-- Course Header -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <div>
-            <h1 class="h3 mb-0 text-gray-800"><?= esc($course['course_name']) ?></h1>
+            <h1 class="h3 mb-0 text-gray-800"><?= esc($course['course_name'] ?? $course['title'] ?? 'Course') ?></h1>
             <p class="mb-0 text-muted">
                 <i class="fas fa-user-tie me-1"></i>
                 <?= esc($course['instructor_name'] ?? ($course['course_instructor'] ?? 'Instructor: Not specified')) ?>
             </p>
         </div>
-        <?php if ($isEnrolled): ?>
+        <?php if (isset($isEnrolled) && $isEnrolled): ?>
             <div class="text-center">
-                <div class="progress-circle d-inline-block" data-value="<?= $progress ?>">
+                <div class="progress-circle d-inline-block" data-value="<?= $progress ?? 0 ?>">
                     <svg class="progress-circle-svg" viewBox="0 0 100 100">
                         <circle class="progress-circle-bg" cx="50" cy="50" r="45" />
                         <circle class="progress-circle-fill" cx="50" cy="50" r="45" 
-                                style="--progress: <?= $progress / 100 ?>;" />
+                                style="--progress: <?= ($progress ?? 0) / 100 ?>;" />
                     </svg>
-                    <div class="progress-circle-text"><?= $progress ?>%</div>
+                    <div class="progress-circle-text"><?= $progress ?? 0 ?>%</div>
                 </div>
                 <div class="text-muted mt-2">Course Progress</div>
             </div>
-        <?php else: ?>
-            <button class="btn btn-primary enroll-btn" data-course-id="<?= $course['course_id'] ?>">
-                <i class="fas fa-plus-circle me-1"></i> Enroll Now
-            </button>
         <?php endif; ?>
     </div>
-
+    <!-- Course Content Tabs -->
+    <div class="row">
+        <div class="col-lg-12">
     <!-- Course Overview -->
     <div class="row mb-4">
         <div class="col-lg-8">
@@ -50,41 +54,54 @@
                 </div>
             </div>
 
-            <!-- Course Content -->
-            <div class="card shadow mb-4" id="course-content">
-                <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                    <h6 class="m-0 font-weight-bold text-primary">Course Content</h6>
-                    <span class="badge bg-primary"><?= count($modules) ?> Modules</span>
-                </div>
-                <div class="list-group list-group-flush">
-                    <?php if (!empty($modules)): ?>
-                        <?php foreach ($modules as $module): ?>
-                            <div class="list-group-item">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h6 class="mb-1"><?= esc($module['title']) ?></h6>
-                                    <span class="badge bg-light text-dark"><?= count($module['lessons'] ?? []) ?> Lessons</span>
-                                </div>
-                                <p class="mb-1 small text-muted"><?= esc($module['description'] ?? '') ?></p>
-                                <?php if (!empty($module['lessons'])): ?>
-                                    <div class="mt-2">
-                                        <?php foreach ($module['lessons'] as $lesson): ?>
-                                            <a href="#" class="d-flex align-items-center text-decoration-none text-dark p-2 lesson-item">
-                                                <span class="flex-grow-1"><?= esc($lesson['title']) ?></span>
-                                                <span class="badge bg-light text-muted"><?= $lesson['duration'] ?? '5 min' ?></span>
-                                            </a>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <div class="list-group-item">
-                            <p class="text-muted mb-0">No content available yet.</p>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
+            <!-- Course Materials Section -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">Course Materials</h6>
+            <span class="badge bg-primary"><?= count($materials ?? []) ?> Materials</span>
         </div>
+        <div class="card-body p-0">
+            <?php if (!empty($materials)): ?>
+                <div class="list-group list-group-flush">
+                    <?php foreach ($materials as $material): 
+                        $filePath = FCPATH . 'uploads/materials/' . $material['file_path'];
+                        $fileExists = file_exists($filePath);
+                        $fileExt = pathinfo($material['file_path'], PATHINFO_EXTENSION);
+                        $iconClass = function_exists('getFileIconClass') ? getFileIconClass($fileExt) : 'fa-file';
+                    ?>
+                        <div class="list-group-item border-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas <?= $iconClass ?> fa-2x text-primary me-3"></i>
+                                    <div>
+                                        <h6 class="mb-0"><?= esc($material['file_name']) ?></h6>
+                                        <small class="text-muted">
+                                            <?= date('M d, Y', strtotime($material['created_at'])) ?> • 
+                                            <?= $fileExists ? formatSizeUnits(filesize($filePath)) : 'File not found' ?>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="<?= site_url('materials/download/' . $material['id']) ?>" 
+                                       class="btn btn-sm btn-outline-primary" 
+                                       title="Download"
+                                       <?= !$fileExists ? 'disabled' : '' ?>>
+                                        <i class="fas fa-download"></i> Download
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <div class="text-center py-5">
+                    <i class="fas fa-folder-open fa-4x text-muted mb-3"></i>
+                    <p class="text-muted">No materials have been uploaded for this course yet.</p>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
 
         <!-- Sidebar -->
         <div class="col-lg-4">
@@ -227,6 +244,47 @@
     .lesson-item.completed .fa-play-circle {
         color: #28a745;
     }
+    .table th {
+    white-space: nowrap;
+    font-size: 0.85rem;
+}
+.table td {
+    vertical-align: middle;
+    font-size: 0.9rem;
+}
+.progress-circle {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.progress-circle-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+.progress-circle-bg {
+    fill: none;
+    stroke: #f3f3f3;
+    stroke-width: 8;
+}
+.progress-circle-fill {
+    fill: none;
+    stroke: #4e73df;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 283;
+    stroke-dashoffset: calc(283 * (1 - var(--progress, 0)));
+    transition: stroke-dashoffset 0.5s ease;
+}
+.progress-circle-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    font-weight: bold;
+    color: #4e73df;
+}
 </style>
 <?= $this->endSection() ?>
 

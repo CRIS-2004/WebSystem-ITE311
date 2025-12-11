@@ -118,6 +118,12 @@ class Course extends BaseController
             // Get user progress
             $progress = $isEnrolled ? $this->courseModel->getUserProgress($userId, $courseId) : 0;
 
+            // Determine dashboard URL based on user role
+            $userRole = strtolower(session()->get('role') ?? '');
+            $dashboardUrl = in_array($userRole, ['admin', 'teacher']) ? 
+                site_url($userRole . '/dashboard') : 
+                site_url('dashboard');
+
             $data = [
                 'title' => $course['course_name'] . ' - Course Details',
                 'course' => $course,
@@ -125,10 +131,17 @@ class Course extends BaseController
                 'enrollment' => $enrollment,
                 'modules' => $modules,
                 'progress' => $progress,
-                'lastAccessed' => $enrollment['last_accessed'] ?? null
+                'lastAccessed' => $enrollment['last_accessed'] ?? null,
+                'dashboardUrl' => $dashboardUrl
             ];
 
-            return view('student/course/view', $data);
+            // Use role-specific view if it exists, otherwise fall back to student view
+            $viewPath = $userRole . '/course/view';
+            if (!file_exists(APPPATH . 'Views/' . $viewPath . '.php')) {
+                $viewPath = 'student/course/view';
+            }
+
+            return view($viewPath, $data);
             
         } catch (\Exception $e) {
             log_message('error', 'Error in Course::view - ' . $e->getMessage());
