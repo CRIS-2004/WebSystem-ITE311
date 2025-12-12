@@ -16,28 +16,45 @@ log_message('debug', 'Course data: ' . print_r(isset($course) ? $course : 'No co
     </div>
     
     <!-- Course Header -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div>
-            <h1 class="h3 mb-0 text-gray-800"><?= esc($course['course_name'] ?? $course['title'] ?? 'Course') ?></h1>
-            <p class="mb-0 text-muted">
-                <i class="fas fa-user-tie me-1"></i>
-                <?= esc($course['instructor_name'] ?? ($course['course_instructor'] ?? 'Instructor: Not specified')) ?>
-            </p>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div>
         </div>
-        <?php if (isset($isEnrolled) && $isEnrolled): ?>
-            <div class="text-center">
-                <div class="progress-circle d-inline-block" data-value="<?= $progress ?? 0 ?>">
-                    <svg class="progress-circle-svg" viewBox="0 0 100 100">
-                        <circle class="progress-circle-bg" cx="50" cy="50" r="45" />
-                        <circle class="progress-circle-fill" cx="50" cy="50" r="45" 
-                                style="--progress: <?= ($progress ?? 0) / 100 ?>;" />
-                    </svg>
-                    <div class="progress-circle-text"><?= $progress ?? 0 ?>%</div>
+        <div class="d-flex align-items-center">
+            <!-- View All Materials Button -->
+           <a href="<?= site_url('student/course/' . ($course['course_id'] ?? 0) . '/materials') ?>" 
+   class="btn btn-primary btn-sm me-2" id="viewAllMaterialsBtn">
+    <i class="fas fa-book me-1"></i> View All Materials
+    <?php 
+    // Get the count from available variables
+    $count = 0;
+    if (isset($materialsCount)) {
+        $count = $materialsCount;
+    } elseif (isset($materials_count)) {
+        $count = $materials_count;
+    } elseif (isset($materials) && is_array($materials)) {
+        $count = count($materials);
+    }
+    
+    if ($count > 0): ?>
+        (<?= $count ?>)
+    <?php endif; ?>
+</a>
+            <?php if (isset($isEnrolled) && $isEnrolled): ?>
+                <div class="text-center">
+                    <div class="progress-circle d-inline-block" data-value="<?= $progress ?? 0 ?>">
+                        <svg class="progress-circle-svg" viewBox="0 0 100 100">
+                            <circle class="progress-circle-bg" cx="50" cy="50" r="45" />
+                            <circle class="progress-circle-fill" cx="50" cy="50" r="45" 
+                                    style="--progress: <?= ($progress ?? 0) / 100 ?>;" />
+                        </svg>
+                        <div class="progress-circle-text"><?= $progress ?? 0 ?>%</div>
+                    </div>
+                    <div class="text-muted mt-2">Course Progress</div>
                 </div>
-                <div class="text-muted mt-2">Course Progress</div>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
     </div>
+</div>
     <!-- Course Content Tabs -->
     <div class="row">
         <div class="col-lg-12">
@@ -124,10 +141,12 @@ log_message('debug', 'Course data: ' . print_r(isset($course) ? $course : 'No co
                             <i class="far fa-calendar-alt me-2 text-primary"></i>
                             <strong>Last Updated:</strong> <?= date('M d, Y', strtotime($course['updated_at'] ?? 'now')) ?>
                         </li>
+                        <?php if (isset($modules) && is_array($modules)): ?>
                         <li class="mb-2">
                             <i class="fas fa-tasks me-2 text-primary"></i>
                             <strong>Modules:</strong> <?= count($modules) ?>
                         </li>
+                        <?php endif; ?>
                         <?php if ($isEnrolled): ?>
                             <li class="mb-2">
                                 <i class="fas fa-calendar-check me-2 text-primary"></i>

@@ -1,7 +1,7 @@
 <?php
 
 use CodeIgniter\Router\RouteCollection;
-
+$routes->get('debug/student/course/(:num)/materials', 'Student::viewCourse/$1');
 /**
  * @var RouteCollection $routes
  */
@@ -86,9 +86,14 @@ $routes->group('teacher', ['namespace' => 'App\Controllers', 'filter' => 'auth']
 // Student 
 $routes->group('student', ['namespace' => 'App\Controllers', 'filter' => 'auth'], function($routes) {
     $routes->get('dashboard', 'Student::dashboard');
+
     $routes->get('courses/(:num)', 'Student::viewCourse/$1', ['as' => 'student.courses.view']);
+    $routes->get('course/(:num)/materials', 'Student::viewCourse/$1', ['as' => 'student.course.materials']);
+    
     $routes->get('materials/download/(:num)', 'Materials::download/$1', ['as' => 'student.materials.download']);
     $routes->get('course/view/(:num)', 'Student::view/$1', ['as' => 'student.course.view']);
+    
+    $routes->get('materials/(:num)', 'Student::viewCourse/$1', ['as' => 'student.materials']);
 });
 
 //  Dashboard 

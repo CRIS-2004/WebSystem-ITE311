@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         }, 1000);
                     }
         });
-    });
+    };
     // Initialize tooltips
     if (typeof $ !== 'undefined') {
         $('[data-toggle="tooltip"]').tooltip();

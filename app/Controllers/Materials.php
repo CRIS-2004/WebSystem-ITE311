@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\MaterialModel;
+use App\Models\CourseModel;
 class Materials extends BaseController
 {
     protected $materialModel;
@@ -12,6 +13,7 @@ class Materials extends BaseController
     public function __construct()
     {
         $this->materialModel = new MaterialModel();
+        $this->courseModel = new CourseModel();
         helper(['form', 'url',]);
     }
     

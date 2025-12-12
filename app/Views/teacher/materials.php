@@ -83,7 +83,7 @@
                                         <i class="fas fa-file"></i>
                                         <?= esc($material['file_name']) ?>
                                     </td>
-                                    <td><?= date('M d, Y H:i', strtotime($material['created_at'])) ?></td>
+                                    <td><?= date('M d, Y', strtotime($material['created_at'])) ?></td>
                                     <td>
                                         <a href="<?= base_url($material['file_path']) ?>" 
                                            class="btn btn-sm btn-primary" 
