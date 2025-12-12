@@ -2,6 +2,11 @@
 
 use CodeIgniter\Router\RouteCollection;
 $routes->get('debug/student/course/(:num)/materials', 'Student::viewCourse/$1');
+
+// Course Search Routes
+$routes->get('courses/search', 'Course::search');
+$routes->post('courses/search', 'Course::search');
+$routes->get('courses', 'Course::index');
 /**
  * @var RouteCollection $routes
  */
@@ -117,17 +122,23 @@ $routes->group('', ['namespace' => 'App\Controllers', 'filter' => 'auth'], funct
 });
 
 // Notification routes
-$routes->group('notifications', function($routes) {
-    $routes->get('', 'Notification::get');
-    $routes->post('mark_read/(:num)', 'Notification::mark_read/$1');
-});
-$routes->get('test-notifications', function() {
-    $notificationModel = new \App\Models\NotificationModel();
-    $userId = session('user_id') ?? 1; // Test with user ID 1 or your test user
+$routes->group('', ['namespace' => 'App\Controllers', 'filter' => 'auth'], function($routes) {
+    $routes->group('notifications', function($routes) {
+        $routes->get('', 'Notifications::get');
+        $routes->post('mark_read/(:num)', 'Notifications::mark_as_read/$1');
+        $routes->post('mark_all_read', 'Notifications::mark_all_read');
+        $routes->get('test', 'Notifications::test');
+    });
     
-    $notifications = $notificationModel->where('user_id', $userId)->findAll();
-    
-    echo '<h1>Test Notifications</h1>';
-    echo '<pre>' . print_r($notifications, true) . '</pre>';
-    echo '<p><a href="/">Back to site</a></p>';
+    // Test route - can be removed in production
+    $routes->get('test-notifications', function() {
+        $notificationModel = new \App\Models\NotificationModel();
+        $userId = session('user_id') ?? 1; // Test with user ID 1 or your test user
+        
+        $notifications = $notificationModel->where('user_id', $userId)->findAll();
+        
+        echo '<h1>Test Notifications</h1>';
+        echo '<pre>' . print_r($notifications, true) . '</pre>';
+        echo '<p><a href="/">Back to site</a></p>';
+    });
 });

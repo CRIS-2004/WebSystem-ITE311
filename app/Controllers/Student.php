@@ -40,18 +40,36 @@ class Student extends BaseController
     public function dashboard()
     {
         $userId = session()->get('userID');
-        
+        $searchTerm = $this->request->getGet('search_term');
         
         // Get all available courses with instructor names
         $db = \Config\Database::connect();
-        $availableCourses = $db->table('courses')
+        $query = $db->table('courses')
             ->select('courses.*, users.name as instructor_name')
-            ->join('users', 'users.id = courses.course_instructor', 'left')
-            ->get()
-            ->getResultArray();
+            ->join('users', 'users.id = courses.course_instructor', 'left');
+            
+        // Add search functionality if search term exists
+        if (!empty($searchTerm)) {
+            $query->groupStart()
+                ->like('courses.course_name', $searchTerm)
+                ->orLike('courses.course_code', $searchTerm)
+                ->orLike('courses.description', $searchTerm)
+                ->orLike('users.name', $searchTerm)
+                ->groupEnd();
+        }
+        
+        $availableCourses = $query->get()->getResultArray();
 
         // Get enrolled courses
         $enrolledCourses = $this->enrollmentModel->getUserEnrollments($userId);
+
+        // Check if it's an AJAX request
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON([
+                'availableCourses' => $availableCourses,
+                'searchTerm' => $searchTerm
+            ]);
+        }
 
         // Prepare data for the view
         $data = [
@@ -63,7 +81,8 @@ class Student extends BaseController
                 'id' => $userId
             ],
             'availableCourses' => $availableCourses,
-            'enrolledCourses' => $enrolledCourses
+            'enrolledCourses' => $enrolledCourses,
+            'searchTerm' => $searchTerm ?? ''
         ];
         
         return view('student/dashboard', $data);

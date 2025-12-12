@@ -21,11 +21,16 @@ class NotificationModel extends Model
     }
 
     public function getNotificationsForUser($userId, $limit = 5)
-    {
-        return $this->where('user_id', $userId)
-                   ->orderBy('created_at', 'DESC')
-                   ->findAll($limit);
-    }
+{
+    log_message('debug', 'Getting notifications for user ID: ' . $userId);
+    
+    $notifications = $this->where('user_id', $userId)
+                         ->orderBy('created_at', 'DESC')
+                         ->findAll($limit);
+                         
+    log_message('debug', 'Found notifications: ' . print_r($notifications, true));
+    return $notifications;
+}
 
     public function markAsRead($notificationId, $userId)
     {

@@ -73,9 +73,23 @@
 
     <!-- Available Courses Section -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3 d-flex justify-content-between align-items-center bg-primary text-white">
-            <h6 class="m-0 font-weight-bold">Available Courses</h6>
-            <span class="badge bg-light text-primary"><?= count($availableCourses) ?> Available</span>
+        <div class="card-header py-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center bg-primary text-white">
+            <div class="mb-3 mb-md-0">
+                <h6 class="m-0 font-weight-bold">Available Courses</h6>
+            </div>
+            <div class="d-flex align-items-center">
+                <form id="searchForm" class="me-3" style="min-width: 250px;">
+                    <div class="input-group">
+                        <input type="text" id="searchInput" class="form-control form-control-sm" 
+                               placeholder="Search courses..." name="search_term" 
+                               value="<?= esc($searchTerm ?? '') ?>">
+                        <button class="btn btn-light btn-sm" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <span class="badge bg-light text-primary"><span id="courseCount"><?= count($availableCourses) ?></span> Available</span>
+            </div>
         </div>
         <div class="card-body">
             <?php if (!empty($availableCourses)): ?>
@@ -90,7 +104,7 @@
                         }
                     ?>
                         <div class="col-md-4 mb-4">
-                            <div class="card h-100 border-left-info shadow-sm">
+                            <div class="card h-100 border-left-info shadow-sm course-card">
                                 <div class="card-body d-flex flex-column">
                                     <div class="mb-3">
                                         <h5 class="card-title text-primary"><?= esc($course['course_name']) ?></h5>
@@ -122,7 +136,7 @@
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
-                <div class="text-center py-4">
+                <div id="noCoursesMessage" class="text-center py-4">
                     <p class="text-muted">No courses available at the moment.</p>
                 </div>
             <?php endif; ?>
@@ -135,10 +149,24 @@
 <?= $this->section('scripts') ?>
 <script>
 $(document).ready(function() {
-    // Show loading overlay during AJAX requests
-    $(document).ajaxStart(function() {
-        $('#loadingOverlay').removeClass('d-none');
-    }).ajaxStop(function() {
+    // Client-side filtering
+    $('#searchInput').on('keyup', function() {
+        var value = $(this).val().toLowerCase();
+        var hasResults = false;
+        
+        $('.course-card').each(function() {
+            var cardText = $(this).text().toLowerCase();
+            var isVisible = cardText.indexOf(value) > -1;
+            $(this).toggle(isVisible);
+            if (isVisible) hasResults = true;
+        });
+        
+        // Show/hide no results message
+        if (!hasResults) {
+            $('#noCoursesMessage').html('<p class="text-muted">No courses found matching your search.</p>').show();
+        } else {
+            $('#noCoursesMessage').hide();
+        }
         $('#loadingOverlay').addClass('d-none');
     });
 

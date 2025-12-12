@@ -549,6 +549,9 @@ public function storeCourse()
     $db = \Config\Database::connect();
     $request = \Config\Services::request();
     
+    // Debug: Log session data
+    log_message('debug', 'Session data: ' . print_r(session()->get(), true));
+    
     // Validation rules
     $rules = [
         'course_code' => 'required|min_length[3]|max_length[50]',
@@ -562,6 +565,7 @@ public function storeCourse()
     ];
 
     if (!$this->validate($rules)) {
+        log_message('error', 'Validation failed: ' . print_r($this->validator->getErrors(), true));
         return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
@@ -580,6 +584,64 @@ public function storeCourse()
     ];
 
     $db->table('courses')->insert($data);
+    $courseId = $db->insertID();
+    log_message('debug', "Course created with ID: {$courseId}");
+    
+    // Get admin user ID from session
+    $adminId = session()->get('user_id');
+    $instructorId = (int)$request->getPost('course_instructor');
+    
+    log_message('debug', "Admin ID: {$adminId}, Instructor ID: {$instructorId}");
+
+    // Verify admin ID is valid
+    if (empty($adminId)) {
+        log_message('error', 'Admin ID is not set in session');
+    } else {
+        // Add notification for admin
+        $adminNotif = [
+            'user_id' => $adminId,
+            'message' => "You have successfully created the course: " . $request->getPost('course_name'),
+            'is_read' => 0,
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+        
+        log_message('debug', 'Attempting to insert admin notification: ' . print_r($adminNotif, true));
+        
+        $db->table('notifications')->insert($adminNotif);
+        $notifId = $db->insertID();
+        log_message('debug', "Admin notification inserted with ID: {$notifId}");
+    }
+    
+    // Verify instructor ID is valid and different from admin
+    if ($instructorId > 0 && $instructorId != $adminId) {
+        // Verify instructor exists
+        $instructorExists = $db->table('users')
+            ->where('id', $instructorId)
+            ->countAllResults() > 0;
+            
+        log_message('debug', "Instructor exists check: " . ($instructorExists ? 'true' : 'false'));
+            
+        if ($instructorExists) {
+            // Add notification for instructor
+            $instructorNotif = [
+                'user_id' => $instructorId,
+                'message' => "You have been assigned as the instructor for course: " . $request->getPost('course_name'),
+                'is_read' => 0,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+            
+            log_message('debug', 'Attempting to insert instructor notification: ' . print_r($instructorNotif, true));
+            
+            $db->table('notifications')->insert($instructorNotif);
+            $notifId = $db->insertID();
+            log_message('debug', "Instructor notification inserted with ID: {$notifId}");
+        } else {
+            log_message('error', "Instructor with ID {$instructorId} not found");
+        }
+    } else {
+        log_message('debug', 'Skipping instructor notification - ' . 
+                   ($instructorId <= 0 ? 'Invalid instructor ID' : 'Instructor is the same as admin'));
+    }
 
     return redirect()->to('/admin/courses')->with('message', 'Course created successfully');
 }

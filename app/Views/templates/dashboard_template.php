@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?? 'LMS Dashboard' ?></title>
     <meta name="csrf-token" content="<?= csrf_token() ?>">
+    <base href="<?= base_url() ?>" />
+    <meta name="base-url" content="<?= base_url() ?>" />
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -134,8 +136,8 @@
                     
                     <!-- Right-aligned items -->
                     <div class="d-flex align-items-center ms-auto">
-                        <!-- Notification Dropdown -->
-                        <div class="nav-item dropdown no-arrow mx-2 notification-container">
+                        <!-- Replace the notification dropdown HTML in dashboard_template.php with this: -->
+                        <div class="nav-item dropdown notification-container">
                             <a class="nav-link notification-toggle" href="#" role="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger notification-badge" style="display: none; font-size: 0.6rem; padding: 0.25em 0.5em;">
@@ -145,7 +147,7 @@
                             <div class="dropdown-menu dropdown-menu-end notification-dropdown p-2" aria-labelledby="notificationDropdown" style="width: 320px;">
                                 <div class="d-flex justify-content-between align-items-center p-2 border-bottom mb-2">
                                     <h6 class="mb-0">Notifications</h6>
-                                    <small><a href="#" class="text-primary">Mark all as read</a></small>
+                                    <small><a href="#" class="text-primary mark-all-read">Mark all as read</a></small>
                                 </div>
                                 <div class="notifications-container" style="max-height: 400px; overflow-y: auto;">
                                     <div class="text-center p-3 text-muted">Loading notifications...</div>
